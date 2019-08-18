@@ -18,9 +18,13 @@ jobs:
             docker push jshm101/jr-site-reverse-proxy:dev
   deploy:
     docker:
-      - image: ubuntu:latest
+      - image: alpine:latest
     working_directory: ~/
     steps:
+      - run:
+          name: Add SSH client
+          command: |
+            apk add openssh
       - run:
           name: SSH & run deploy script
           command: |
